@@ -4,7 +4,7 @@
 # File name: aria2-install.sh
 # Description: Install latest version Aria2
 # System Required: Debian/Ubuntu or other
-# Version: 1.1
+# Version: 1.2
 # Lisence: GPLv3
 # Author: P3TERX
 # Blog: https://p3terx.com (chinese)
@@ -30,6 +30,8 @@ if [[ $ARCH == "x86_64" ]]; then
     ARCH="x86_64"
 elif [[ $ARCH == "aarch64" ]]; then
     ARCH="aarch64"
+elif [[ $ARCH == "armv7l" ]]; then
+    ARCH="armhf"
 else
     echo -e "${ERROR} This architecture is not supported."
     exit 1
