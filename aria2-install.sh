@@ -4,7 +4,7 @@
 # File name: aria2-install.sh
 # Description: Install latest version Aria2
 # System Required: Debian/Ubuntu or other
-# Version: 1.3
+# Version: 1.4
 # Lisence: GPLv3
 # Author: P3TERX
 # Blog: https://p3terx.com (chinese)
@@ -57,7 +57,7 @@ ARIA2_VER=$(curl -fsSL https://api.github.com/repos/P3TERX/aria2-builder/release
     }
 }
 
-echo -e "${INFO} Download Aria2 ${ARIA2_VER} ..."
+echo -e "${INFO} Download Aria2 ${ARIA2_VER} ${ARCH} ..."
 curl -LS "https://github.com/P3TERX/aria2-builder/releases/download/${ARIA2_VER}/aria2-${ARIA2_VER}-static-linux-${ARCH}.tar.gz" | tar -zxC . || {
     echo -e "${ERROR} Unable to download aria2, network failure or other error."
     exit 1
