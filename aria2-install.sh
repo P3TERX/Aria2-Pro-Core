@@ -4,7 +4,7 @@
 # File name: aria2-install.sh
 # Description: Install latest version Aria2
 # System Required: Debian/Ubuntu or other
-# Version: 1.2
+# Version: 1.3
 # Lisence: GPLv3
 # Author: P3TERX
 # Blog: https://p3terx.com (chinese)
@@ -24,13 +24,17 @@ Font_color_suffix="\033[0m"
 INFO="[${Green_font_prefix}INFO${Font_color_suffix}]"
 ERROR="[${Red_font_prefix}ERROR${Font_color_suffix}]"
 ARCH=$(uname -m)
+[ $(command -v dpkg) ] \
+&& dpkgARCH=$(dpkg --print-architecture | awk -F- '{ print $NF }')
 
 echo -e "${INFO} Check the architecture ..."
-if [[ $ARCH == "x86_64" ]]; then
-    ARCH="x86_64"
-elif [[ $ARCH == "aarch64" ]]; then
-    ARCH="aarch64"
-elif [[ $ARCH == "armv7l" ]]; then
+if [[ $ARCH == i*86 || $dpkgARCH == i*86 ]]; then
+    ARCH="i386"
+elif [[ $ARCH == "x86_64" || $dpkgARCH == "amd64" ]]; then
+    ARCH="amd64"
+elif [[ $ARCH == "aarch64" || $dpkgARCH == "arm64" ]]; then
+    ARCH="arm64"
+elif [[ $ARCH == "armv7l" || $dpkgARCH == "armhf" ]]; then
     ARCH="armhf"
 else
     echo -e "${ERROR} This architecture is not supported."
