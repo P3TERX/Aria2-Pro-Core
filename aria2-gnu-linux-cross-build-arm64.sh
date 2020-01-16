@@ -5,7 +5,7 @@
 # Description: Cross build Aria2 arm64 version
 # System Required: Debian & Ubuntu & Fedora & Arch Linux
 # Lisence: GPLv3
-# Version: 1.0
+# Version: 1.1
 # Author: P3TERX
 # Blog: https://p3terx.com (chinese)
 #===========================================================
@@ -26,6 +26,7 @@ ARCH="arm64"
 HOST="aarch64-linux-gnu"
 OPENSSL_ARCH="linux-aarch64"
 BUILD_DIR="/tmp"
+OUTPUT_DIR="$HOME/output"
 PREFIX="$BUILD_DIR/aria2-cross-build-libs-$ARCH"
 ARIA2_PREFIX=$HOME/aria2-local
 export CURL_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
@@ -188,8 +189,9 @@ ARIA2_BUILD(){
 ARIA2_PACKAGE(){
     cd $BUILD_DIR/aria2/src
     $HOST-strip aria2c
-    tar Jcvf $HOME/aria2-$ARIA2_VER-static-linux-$ARCH.tar.xz aria2c
-    tar zcvf $HOME/aria2-$ARIA2_VER-static-linux-$ARCH.tar.gz aria2c
+    mkdir -p $OUTPUT_DIR
+    tar Jcvf $OUTPUT_DIR/aria2-$ARIA2_VER-static-linux-$ARCH.tar.xz aria2c
+    tar zcvf $OUTPUT_DIR/aria2-$ARIA2_VER-static-linux-$ARCH.tar.gz aria2c
 }
 
 ARIA2_INSTALL(){

@@ -5,7 +5,7 @@
 # Description: Build aria2 on the target architecture
 # System Required: Debian & Ubuntu & Fedora & Arch Linux
 # Lisence: GPLv3
-# Version: 1.0
+# Version: 1.1
 # Author: P3TERX
 # Blog: https://p3terx.com (chinese)
 #===========================================================
@@ -25,8 +25,9 @@ LIBSSH2='https://www.libssh2.org/download/libssh2-1.9.0.tar.gz'
 ARCH="`uname -m`"
 OPENSSL_ARCH="linux-elf"
 BUILD_DIR="/tmp"
+OUTPUT_DIR="$HOME/output"
 PREFIX="$BUILD_DIR/aria2-build-libs"
-ARIA2_PREFIX="/usr/loacl"
+ARIA2_PREFIX="/usr/local"
 export CURL_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
 export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig"
 export LD_LIBRARY_PATH="$PREFIX/lib"
@@ -178,8 +179,9 @@ ARIA2_PACKAGE(){
     dpkgARCH=$(dpkg --print-architecture | awk -F- '{ print $NF }')
     cd $BUILD_DIR/aria2/src
     strip aria2c
-    tar Jcvf $HOME/aria2-$ARIA2_VER-static-linux-$dpkgARCH.tar.xz aria2c
-    tar zcvf $HOME/aria2-$ARIA2_VER-static-linux-$dpkgARCH.tar.gz aria2c
+    mkdir -p $OUTPUT_DIR
+    tar Jcvf $OUTPUT_DIR/aria2-$ARIA2_VER-static-linux-$dpkgARCH.tar.xz aria2c
+    tar zcvf $OUTPUT_DIR/aria2-$ARIA2_VER-static-linux-$dpkgARCH.tar.gz aria2c
 }
 
 ARIA2_INSTALL(){
