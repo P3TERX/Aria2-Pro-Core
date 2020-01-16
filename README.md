@@ -1,8 +1,14 @@
 # Aria2 static builds for GNU/Linux
 
-### Downloads
+[![LICENSE](https://img.shields.io/github/license/P3TERX/aria2-builder?style=flat-square)](https://github.com/P3TERX/aria2-builder/blob/master/LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/P3TERX/aria2-builder.svg?style=flat-square&label=Stars)](https://github.com/P3TERX/aria2-builder/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/P3TERX/aria2-builder.svg?style=flat-square&label=Forks)](https://github.com/P3TERX/aria2-builder/fork)
 
-[On releases page](https://github.com/P3TERX/aria2-builder/releases)
+## Downloads
+
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/P3TERX/aria2-builder?style=for-the-badge)](https://github.com/P3TERX/aria2-builder/releases/latest)
+
+## Usage
 
 ### Install
 
@@ -23,17 +29,27 @@ sudo mv aria2c /usr/local/bin
 sudo rm -f /usr/local/bin/aria2c
 ```
 
+## External links
+
+### Aria2
+
+* [Aria2 homepage](https://aria2.github.io/)
+* [Aria2 documentation](https://aria2.github.io/manual/en/html/)
+* [Aria2 source code (Github)](https://github.com/aria2/aria2)
+
 ### Used external libraries
 
-* http://www.zlib.net/
-* http://expat.sourceforge.net/
-* http://c-ares.haxx.se/
-* http://www.sqlite.org/
-* http://www.openssl.org/
-* http://www.libssh2.org/
+* [zlib](http://www.zlib.net/)
+* [Expat](https://libexpat.github.io/)
+* [c-ares](http://c-ares.haxx.se/)
+* [SQLite](http://www.sqlite.org/)
+* [OpenSSL](http://www.openssl.org/)
+* [libssh2](http://www.libssh2.org/)
 
-### External links
+### Credits
 
-* [aria2 homepage](https://aria2.github.io/)
-* [aria2 documentation](https://aria2.github.io/manual/en/html/)
-* [aria2 source code (Github)](https://github.com/aria2/aria2)
+* [q3aql/aria2-static-builds](https://github.com/q3aql/aria2-static-builds)
+
+## Licence
+
+![GPLv3](https://www.gnu.org/graphics/gplv3-127x51.png)
