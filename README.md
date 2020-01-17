@@ -40,6 +40,12 @@ bash aria2-gnu-linux-build.sh
 
 ### with docker
 
+Enable BuildKit
+> **TIPS:** Docker minimum version 19.03, you can also use [buildx](https://github.com/docker/buildx).
+```
+export DOCKER_BUILDKIT=1
+```
+
 Build Aria2 for current architecture platforms.
 ```shell
 docker build \
