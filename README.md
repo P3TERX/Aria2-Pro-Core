@@ -35,20 +35,17 @@ Download script, execute script.
 > **TIPS:** In today's containerization of everything, this is not recommended.
 ```shell
 git clone https://github.com/P3TERX/aria2-builder
+cd aria2-builder
 bash aria2-gnu-linux-build.sh
 ```
 
 ### with docker
 
-Enable BuildKit
 > **TIPS:** Docker minimum version 19.03, you can also use [buildx](https://github.com/docker/buildx).
-```
-export DOCKER_BUILDKIT=1
-```
 
 Build Aria2 for current architecture platforms.
 ```shell
-docker build \
+DOCKER_BUILDKIT=1 docker build \
     -o type=local,dest=. \
     git://github.com/P3TERX/aria2-builder
 ```
@@ -62,7 +59,7 @@ $ ls -l
 
 Cross build Aria2 for other platforms, e.g.:
 ```
-docker build \
+DOCKER_BUILDKIT=1 docker build \
     --build-arg BUILDER_IMAGE=ubuntu:14.04 \
     --build-arg BUILD_SCRIPT=aria2-gnu-linux-cross-build-armhf.sh \
     -o type=local,dest=. \
