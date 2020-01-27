@@ -1,8 +1,11 @@
-# Aria2 static builds for GNU/Linux
+# Aria2 Builder
 
 [![LICENSE](https://img.shields.io/github/license/P3TERX/aria2-builder?style=flat-square)](https://github.com/P3TERX/aria2-builder/blob/master/LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/P3TERX/aria2-builder.svg?style=flat-square&label=Stars)](https://github.com/P3TERX/aria2-builder/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/P3TERX/aria2-builder.svg?style=flat-square&label=Forks)](https://github.com/P3TERX/aria2-builder/fork)
+[![GitHub Stars](https://img.shields.io/github/stars/P3TERX/aria2-builder.svg?style=flat-square&label=Stars&logo=github)](https://github.com/P3TERX/aria2-builder/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/P3TERX/aria2-builder.svg?style=flat-square&label=Forks&logo=github)](https://github.com/P3TERX/aria2-builder/fork)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/P3TERX/docker-aria2-pro/Docker%20images%20build%20test?label=Actions&logo=github&style=flat-square)
+
+Aria2 static builds for GNU/Linux
 
 ## Downloads
 
@@ -10,12 +13,13 @@
 
 ## Installing
 
-### Automatic script:
+### Automatic script
 ```shell
 curl -fsSL git.io/aria2c.sh | bash
+wget -qO- git.io/aria2c.sh | bash
 ```
 
-### Manual installation:
+### Manual installation
 ```shell
 wget https://github.com/P3TERX/aria2-builder/releases/download/[version]/aria2-[version]-static-linux-[arch].tar.gz
 tar zxvf aria2-[version]-static-linux-[arch].tar.gz
