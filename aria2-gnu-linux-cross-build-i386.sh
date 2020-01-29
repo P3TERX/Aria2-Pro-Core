@@ -169,6 +169,18 @@ ARIA2_RELEASE(){
 
 ARIA2_BUILD(){
     ARIA2_RELEASE || ARIA2_SOURCE
+    echo "修改最大连接数TEXT_MAX_CONNECTION_PER_SERVER"
+    sed -i 's/1", 1, 16/128", 1, -1/' src/OptionHandlerFactory.cc
+    echo "修改PREF_MIN_SPLIT_SIZE, TEXT_MIN_SPLIT_SIZE"
+    sed -i 's/"20M", 1_m, 1_g/"4K", 1_k, 1_g/' src/OptionHandlerFactory.cc
+    echo "修改TEXT_CONNECT_TIMEOUT"
+    sed -i 's/TEXT_CONNECT_TIMEOUT, "60", 1, 600/TEXT_CONNECT_TIMEOUT, "30", 1, 600/' src/OptionHandlerFactory.cc
+    echo "修改TEXT_PIECE_LENGTH"
+    sed -i 's/TEXT_PIECE_LENGTH, "1M", 1_m/TEXT_PIECE_LENGTH, "4k", 1_k/' src/OptionHandlerFactory.cc
+    echo "修改TEXT_RETRY_WAIT"
+    sed -i 's/TEXT_RETRY_WAIT, "0", 0, 600/TEXT_RETRY_WAIT, "2", 0, 600/' src/OptionHandlerFactory.cc
+    echo "修改PREF_SPLIT, TEXT_SPLIT"
+    sed -i 's/PREF_SPLIT, TEXT_SPLIT, "5"/PREF_SPLIT, TEXT_SPLIT, "8"/' src/OptionHandlerFactory.cc
     ./configure \
         --host=$HOST \
         --prefix=${ARIA2_PREFIX:-'/usr'} \
