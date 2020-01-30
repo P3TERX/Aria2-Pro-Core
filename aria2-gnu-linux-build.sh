@@ -180,6 +180,8 @@ ARIA2_BUILD(){
         --without-libgmp \
         --with-libssh2 \
         --with-sqlite3 \
+        --with-libexpat \
+        --with-libz \
         --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt' \
         ARIA2_STATIC=yes \
         --enable-shared=no

@@ -168,7 +168,6 @@ ARIA2_BUILD(){
     echo "修改PREF_SPLIT, TEXT_SPLIT"
     sed -i 's/PREF_SPLIT, TEXT_SPLIT, "5"/PREF_SPLIT, TEXT_SPLIT, "8"/' src/OptionHandlerFactory.cc
     ./configure \
-        --host=$HOST \
         --prefix=${ARIA2_PREFIX:-'/usr'} \
         --without-libxml2 \
         --without-libgcrypt \
@@ -178,6 +177,8 @@ ARIA2_BUILD(){
         --without-libgmp \
         --with-libssh2 \
         --with-sqlite3 \
+        --with-libexpat \
+        --with-libz \
         --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt' \
         ARIA2_STATIC=yes \
         --enable-shared=no
