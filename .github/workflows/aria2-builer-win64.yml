@@ -1,0 +1,31 @@
+name: win64 build
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Build
+      env:
+        DOCKER_BUILDKIT: 1
+        BUILDER_IMAGE: debian:testing
+        BUILD_SCRIPT: aria2-gnu-win-build-64bit.sh
+      run: |
+        docker build \
+          --build-arg BUILDER_IMAGE \
+          --build-arg BUILD_SCRIPT \
+          --platform=local \
+          -o ./output .
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: aria2-win64
+        path: output
