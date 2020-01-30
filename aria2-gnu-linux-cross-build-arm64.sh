@@ -182,6 +182,7 @@ ARIA2_BUILD(){
     echo "修改PREF_SPLIT, TEXT_SPLIT"
     sed -i 's/PREF_SPLIT, TEXT_SPLIT, "5"/PREF_SPLIT, TEXT_SPLIT, "8"/' src/OptionHandlerFactory.cc
     ./configure \
+        --host=$HOST \
         --prefix=${ARIA2_PREFIX:-'/usr'} \
         --without-libxml2 \
         --without-libgcrypt \
