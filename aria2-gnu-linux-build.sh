@@ -136,7 +136,7 @@ LIBSSH2_BUILD(){
     make install
 }
 
-ARIA2_SRC(){
+ARIA2_SOURCE(){
     [ -e $BUILD_DIR/aria2 ] && {
         cd $BUILD_DIR/aria2
         git reset --hard origin || git reset --hard
@@ -150,10 +150,12 @@ ARIA2_SRC(){
 }
 
 ARIA2_RELEASE(){
+    [ -e "$ARIA2_VER" ] || \
+        ARIA2_VER=$(curl -fsSL https://api.github.com/repos/aria2/aria2/releases | grep -o '"tag_name": ".*"' | head -n 1 | sed 's/"//g;s/v//g' | sed 's/tag_name: //g')
     mkdir -p $BUILD_DIR/aria2 && cd $BUILD_DIR/aria2
-    curl -s 'https://api.github.com/repos/aria2/aria2/releases/latest' | \
-        grep 'browser_download_url.*[0-9]\.tar\.xz' | sed -e 's/^[[:space:]]*//' | \
-        cut -d ' ' -f 2 | xargs -I % curl -Ls -o - '%' | tar Jxvf - --strip-components=1
+    ARIA2_VER=${ARIA2_VER#*-}
+    curl -Ls -o - "https://github.com/aria2/aria2/releases/download/release-${ARIA2_VER}/aria2-${ARIA2_VER}.tar.xz" | \
+        tar Jxvf - --strip-components=1
 }
 
 ARIA2_BUILD(){
@@ -194,8 +196,7 @@ ARIA2_PACKAGE(){
     cd $BUILD_DIR/aria2/src
     strip aria2c
     mkdir -p $OUTPUT_DIR
-    tar Jcvf $OUTPUT_DIR/aria2-$ARIA2_VER-static-linux-$dpkgARCH.tar.xz aria2c
-    tar zcvf $OUTPUT_DIR/aria2-$ARIA2_VER-static-linux-$dpkgARCH.tar.gz aria2c
+    zip -9 -r $OUTPUT_DIR/aria2-linux-$dpkgARCH.zip aria2c
 }
 
 ARIA2_INSTALL(){

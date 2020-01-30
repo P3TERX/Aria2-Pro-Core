@@ -1,12 +1,25 @@
-name: amd64 build
-
-on: 
-  release:
-    types: [published]
+name: Aria2 Build
+on:
+  push:
+    branches:
+      - master
+#  schedule:
+#    - cron: 0 8 * * 5
+#  watch:
+#    types: [started]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        SCRIPT_S:
+        - aria2-gnu-linux-build.sh
+        - aria2-gnu-linux-cross-build-arm64.sh
+        - aria2-gnu-linux-cross-build-armhf.sh
+        - aria2-gnu-linux-cross-build-i386.sh
+        - aria2-gnu-win-build-64bit.sh
 
     steps:
     - name: Checkout
@@ -16,16 +29,75 @@ jobs:
       env:
         DOCKER_BUILDKIT: 1
         BUILDER_IMAGE: debian:testing
-        BUILD_SCRIPT: aria2-gnu-linux-build.sh
+        BUILD_SCRIPT: ${{ matrix.SCRIPT_S }}
       run: |
+        ARIA2_VER=$(curl -fsSL https://api.github.com/repos/aria2/aria2/releases | grep -o '"tag_name": ".*"' | head -n 1 | sed 's/"//g;s/v//g' | sed 's/tag_name: //g')
+        ARIA2_VER=${ARIA2_VER#*-}
+        echo "::set-env name=ARIA2_VER::$ARIA2_VER"
+        echo "::set-env name=TAG::$ARIA2_VER-$(date "+%Y%m%d")"
         docker build \
           --build-arg BUILDER_IMAGE \
           --build-arg BUILD_SCRIPT \
           --platform=local \
           -o ./output .
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: aria2-amd64
-        path: output
+        tag_name: ${{ env.TAG }}
+        release_name: ${{ env.TAG }}
+        draft: false
+        prerelease: false
+
+    - name: Upload linux-amd64
+      uses: actions/upload-release-asset@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./aria2-linux-amd64.zip
+          asset_name: aria2-linux-amd64.zip
+          asset_content_type: application/zip
+
+    - name: Upload linux-arm64
+      uses: actions/upload-release-asset@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./aria2-linux-arm64.zip
+          asset_name: aria2-linux-arm64.zip
+          asset_content_type: application/zip
+
+    - name: Upload linux-armhf
+      uses: actions/upload-release-asset@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./aria2-linux-armhf.zip
+          asset_name: aria2-linux-armhf.zip
+          asset_content_type: application/zip
+
+    - name: Upload linux-i386
+      uses: actions/upload-release-asset@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./aria2-linux-i386.zip
+          asset_name: aria2-linux-i386.zip
+          asset_content_type: application/zip
+
+    - name: Upload win-64bit
+      uses: actions/upload-release-asset@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./aria2-win-64bit.zip
+          asset_name: aria2-win-64bit.zip
+          asset_content_type: application/zip

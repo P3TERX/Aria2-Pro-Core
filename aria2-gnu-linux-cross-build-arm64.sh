@@ -204,8 +204,7 @@ ARIA2_PACKAGE(){
     cd $BUILD_DIR/aria2/src
     $HOST-strip aria2c
     mkdir -p $OUTPUT_DIR
-    tar Jcvf $OUTPUT_DIR/aria2-$ARIA2_VER-static-linux-$ARCH.tar.xz aria2c
-    tar zcvf $OUTPUT_DIR/aria2-$ARIA2_VER-static-linux-$ARCH.tar.gz aria2c
+    zip -9 -r $OUTPUT_DIR/aria2-linux-$ARCH.zip aria2c
 }
 
 ARIA2_INSTALL(){
