@@ -1,9 +1,10 @@
 # Aria2 Builder
 
 [![LICENSE](https://img.shields.io/github/license/P3TERX/aria2-builder?style=flat-square)](https://github.com/P3TERX/aria2-builder/blob/master/LICENSE)
+![GitHub All Releases](https://img.shields.io/github/downloads/P3TERX/aria2-builder/total?label=Downlaods&style=flat-square&color=red)
 [![GitHub Stars](https://img.shields.io/github/stars/P3TERX/aria2-builder.svg?style=flat-square&label=Stars&logo=github)](https://github.com/P3TERX/aria2-builder/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/P3TERX/aria2-builder.svg?style=flat-square&label=Forks&logo=github)](https://github.com/P3TERX/aria2-builder/fork)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/P3TERX/docker-aria2-pro/Docker%20images%20build%20test?label=Actions&logo=github&style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/P3TERX/aria2-builder/Aria2%20Builder?label=Actions&logo=github&style=flat-square)
 
 Aria2 static builds for GNU/Linux
 
@@ -16,7 +17,6 @@ Aria2 static builds for GNU/Linux
 ### Automatic script
 ```shell
 curl -fsSL git.io/aria2c.sh | bash
-wget -qO- git.io/aria2c.sh | bash
 ```
 
 ### Manual installation
@@ -51,14 +51,13 @@ Build Aria2 for current architecture platforms.
 ```shell
 DOCKER_BUILDKIT=1 docker build \
     -o type=local,dest=. \
-    git://github.com/P3TERX/aria2-builder
+    github.com/P3TERX/aria2-builder
 ```
 
 **`dest`** can define the output directory. If there are no changes, two archive files will be generated in the current directory after the work is completed.
 ```
 $ ls -l 
 -rw-r--r-- 1 p3terx p3terx 3744106 Jan 17 20:24 aria2-1.35.0-static-linux-amd64.tar.gz
--rw-r--r-- 1 p3terx p3terx 2931344 Jan 17 20:24 aria2-1.35.0-static-linux-amd64.tar.xz
 ```
 
 Cross build Aria2 for other platforms, e.g.:
@@ -67,7 +66,7 @@ DOCKER_BUILDKIT=1 docker build \
     --build-arg BUILDER_IMAGE=ubuntu:14.04 \
     --build-arg BUILD_SCRIPT=aria2-gnu-linux-cross-build-armhf.sh \
     -o type=local,dest=. \
-    git://github.com/P3TERX/aria2-builder
+    github.com/P3TERX/aria2-builder
 ```
 > **`BUILDER_IMAGE`** variable defines the system image used for the build. In general, platforms other than `armhf` don't require it.  
 > **`BUILD_SCRIPT`** variable defines the script used for the cross build.
