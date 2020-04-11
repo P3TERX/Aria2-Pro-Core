@@ -8,8 +8,7 @@
 name: Aria2 Builder
 
 on: 
-  release:
-    types: published
+  repository_dispatch:
   push:
     paths-ignore:
       - '**.md'
