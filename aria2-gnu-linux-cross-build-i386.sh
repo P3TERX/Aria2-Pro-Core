@@ -5,7 +5,7 @@
 # Description: Cross build Aria2 i386 version
 # System Required: Debian & Ubuntu & Fedora & Arch Linux
 # Lisence: GPLv3
-# Version: 1.2
+# Version: 1.3
 # Author: P3TERX
 # Blog: https://p3terx.com (chinese)
 #===========================================================
@@ -17,8 +17,8 @@ $SUDO echo
 ZLIB='http://sourceforge.net/projects/libpng/files/zlib/1.2.11/zlib-1.2.11.tar.gz'
 EXPAT='https://github.com/libexpat/libexpat/releases/download/R_2_2_9/expat-2.2.9.tar.bz2'
 C_ARES='http://c-ares.haxx.se/download/c-ares-1.16.0.tar.gz'
-OPENSSL='http://www.openssl.org/source/openssl-1.1.1e.tar.gz'
-SQLITE3='https://sqlite.org/2019/sqlite-autoconf-3300100.tar.gz'
+OPENSSL='http://www.openssl.org/source/openssl-1.1.1f.tar.gz'
+SQLITE3='https://www.sqlite.org/2020/sqlite-autoconf-3310100.tar.gz'
 LIBSSH2='https://www.libssh2.org/download/libssh2-1.9.0.tar.gz'
 
 ## CONFIG ##
