@@ -5,25 +5,18 @@
 # Description: Build aria2 on the target architecture
 # System Required: Debian & Ubuntu & Fedora & Arch Linux
 # Lisence: GPLv3
-# Version: 1.3
+# Version: 1.4
 # Author: P3TERX
 # Blog: https://p3terx.com (chinese)
 #===========================================================
 set -e
 [ $EUID != 0 ] && SUDO=sudo
 $SUDO echo
-
-## DEPENDENCES ##
-ZLIB='http://sourceforge.net/projects/libpng/files/zlib/1.2.11/zlib-1.2.11.tar.gz'
-EXPAT='https://github.com/libexpat/libexpat/releases/download/R_2_2_9/expat-2.2.9.tar.bz2'
-C_ARES='http://c-ares.haxx.se/download/c-ares-1.16.0.tar.gz'
-OPENSSL='http://www.openssl.org/source/openssl-1.1.1f.tar.gz'
-SQLITE3='https://www.sqlite.org/2020/sqlite-autoconf-3310100.tar.gz'
-LIBSSH2='https://www.libssh2.org/download/libssh2-1.9.0.tar.gz'
+SCRIPT_DIR=$PWD
 
 ## CONFIG ##
 ARCH="$(uname -m)"
-OPENSSL_ARCH="linux-x86_64"
+OPENSSL_ARCH="linux-elf"
 BUILD_DIR="/tmp"
 OUTPUT_DIR="$HOME/output"
 PREFIX="$BUILD_DIR/aria2-build-libs"
@@ -37,6 +30,9 @@ export STRIP="strip"
 export RANLIB="ranlib"
 export AR="ar"
 export LD="ld"
+
+## DEPENDENCES ##
+source dependences
 
 DEBIAN_INSTALL() {
     $SUDO apt-get update
@@ -130,7 +126,7 @@ LIBSSH2_BUILD() {
     make install -j$(nproc)
 }
 
-ARIA2_SRC() {
+ARIA2_SOURCE() {
     [ -e $BUILD_DIR/aria2 ] && {
         cd $BUILD_DIR/aria2
         git reset --hard origin || git reset --hard
@@ -150,8 +146,13 @@ ARIA2_RELEASE() {
         cut -d ' ' -f 2 | xargs -I % curl -Ls -o - '%' | tar Jxvf - --strip-components=1
 }
 
+ARIA2_PATCH() {
+    git apply $SCRIPT_DIR/patch/*.patch
+}
+
 ARIA2_BUILD() {
     ARIA2_RELEASE || ARIA2_SOURCE
+    ARIA2_PATCH
     ./configure \
         --prefix=${ARIA2_PREFIX:-'/usr/loacl'} \
         --without-libxml2 \
