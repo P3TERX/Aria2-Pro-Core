@@ -2,9 +2,11 @@ ARG BUILDER_IMAGE=debian:testing
 
 FROM $BUILDER_IMAGE AS builder
 
-ARG BUILD_SCRIPT=aria2-gnu-linux-build.sh
+WORKDIR /P3TERX/aria2-builder
 
-COPY $BUILD_SCRIPT .
+COPY . .
+
+ARG BUILD_SCRIPT=aria2-gnu-linux-build.sh
 
 RUN bash $BUILD_SCRIPT
 
