@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
-#===========================================================
+#
+# Copyright (c) 2020 P3TERX <https://p3terx.com>
+#
+# This is free software, licensed under the GNU General Public License v3.
+# See /LICENSE for more information.
+#
 # https://github.com/P3TERX/aria2-builder
 # File name: aria2-gnu-linux-cross-build-i386.sh
 # Description: Cross build Aria2 i386 version
 # System Required: Debian & Ubuntu & Fedora & Arch Linux
-# Lisence: GPLv3
 # Version: 1.4
-# Author: P3TERX
-# Blog: https://p3terx.com (chinese)
-#===========================================================
+#
+
 set -e
 [ $EUID != 0 ] && SUDO=sudo
 $SUDO echo

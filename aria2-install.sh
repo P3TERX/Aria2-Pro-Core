@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
-#=================================================
+#
+# Copyright (c) 2020 P3TERX <https://p3terx.com>
+#
+# This is free software, licensed under the GNU General Public License v3.
+# See /LICENSE for more information.
+#
 # https://github.com/P3TERX/aria2-builder
 # File name: aria2-install.sh
 # Description: Install latest version Aria2
 # System Required: Debian/Ubuntu or other
 # Version: 1.5
-# Lisence: GPLv3
-# Author: P3TERX
-# Blog: https://p3terx.com (chinese)
-#=================================================
+#
+
 set -e
 [ $(uname) != Linux ] && {
     echo "This operating system is not supported."
