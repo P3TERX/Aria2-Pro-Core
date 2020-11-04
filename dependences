@@ -1,6 +1,6 @@
 ZLIB='https://www.zlib.net/zlib-1.2.11.tar.gz'
-EXPAT='https://github.com/libexpat/libexpat/releases/download/R_2_2_9/expat-2.2.9.tar.bz2'
+EXPAT='https://github.com/libexpat/libexpat/releases/download/R_2_2_10/expat-2.2.10.tar.bz2'
 C_ARES='https://c-ares.haxx.se/download/c-ares-1.16.1.tar.gz'
-OPENSSL='https://www.openssl.org/source/openssl-1.1.1g.tar.gz'
+OPENSSL='https://www.openssl.org/source/openssl-1.1.1h.tar.gz'
 SQLITE3='https://www.sqlite.org/2020/sqlite-autoconf-3330000.tar.gz'
 LIBSSH2='https://www.libssh2.org/download/libssh2-1.9.0.tar.gz'
