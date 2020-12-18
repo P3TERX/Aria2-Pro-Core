@@ -1,0 +1,30 @@
+#
+# Copyright (c) 2020 P3TERX <https://p3terx.com>
+#
+# This is free software, licensed under the GNU General Public License v3.
+# See /LICENSE for more information.
+#
+# https://github.com/P3TERX/aria2-builder
+# File name: snippet/clean
+#
+
+CLEANUP_SRC() {
+    cd $BUILD_DIR
+    rm -rf \
+        zlib \
+        expat \
+        c-ares \
+        openssl \
+        sqlite3 \
+        libssh2 \
+        aria2
+}
+
+CLEANUP_LIB() {
+    rm -rf $PREFIX
+}
+
+CLEANUP_ALL() {
+    CLEANUP_SRC
+    CLEANUP_LIB
+}

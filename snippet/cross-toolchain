@@ -1,0 +1,26 @@
+#
+# Copyright (c) 2020 P3TERX <https://p3terx.com>
+#
+# This is free software, licensed under the GNU General Public License v3.
+# See /LICENSE for more information.
+#
+# https://github.com/P3TERX/aria2-builder
+# File name: snippet/cross-toolchain
+#
+
+DEBIAN_INSTALL() {
+    $SUDO apt-get update
+    $SUDO apt-get -y install build-essential git curl ca-certificates \
+        libxml2-dev libcppunit-dev autoconf automake autotools-dev autopoint libtool pkg-config \
+        gcc-$HOST g++-$HOST
+}
+
+FEDORA_INSTALL() {
+    $SUDO dnf install -y make kernel-devel git curl ca-certificates bzip2 xz findutils \
+        libxml2-devel cppunit autoconf automake gettext-devel libtool pkg-config dpkg \
+        gcc-$HOST gcc-c++-$HOST
+}
+
+ARCH_INSTALL() {
+    $SUDO pacman -Syu --noconfirm base-devel git dpkg $HOST-gcc
+}
