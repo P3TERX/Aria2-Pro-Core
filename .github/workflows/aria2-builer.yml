@@ -28,7 +28,7 @@ jobs:
         include:
         - PLATFORMS: amd64
           BUILDER_IMAGE: ubuntu:20.04
-          BUILD_SCRIPT: aria2-gnu-linux-build.sh
+          BUILD_SCRIPT: aria2-gnu-linux-build-amd64.sh
         - PLATFORMS: arm64
           BUILDER_IMAGE: ubuntu:20.04
           BUILD_SCRIPT: aria2-gnu-linux-cross-build-arm64.sh
