@@ -9,7 +9,7 @@
 # File name: aria2-gnu-linux-cross-build-armhf.sh
 # Description: Cross build Aria2 armhf version
 # System Required: Ubuntu 14.04/16.04
-# Version: 1.4
+# Version: 1.4.1
 #
 
 set -e
@@ -20,7 +20,7 @@ SCRIPT_DIR=$PWD
 ## CONFIG ##
 ARCH="armhf"
 HOST="arm-linux-gnueabihf"
-OPENSSL_ARCH="linux-elf"
+OPENSSL_ARCH="linux-generic32"
 BUILD_DIR="/tmp"
 OUTPUT_DIR="$HOME/output"
 PREFIX="$BUILD_DIR/aria2-cross-build-libs-$ARCH"
