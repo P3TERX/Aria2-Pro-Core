@@ -79,6 +79,20 @@ LIBSSH2_BUILD() {
     make install -j$(nproc)
 }
 
+JEMALLOC_BUILD() {
+    mkdir -p $BUILD_DIR/jemalloc && cd $BUILD_DIR/jemalloc
+    curl -Ls -o - "$JEMALLOC" | tar jxvf - --strip-components=1
+    ./configure \
+        --host=$HOST \
+        --build=$(dpkg-architecture -qDEB_BUILD_GNU_TYPE) \
+        --prefix=$PREFIX \
+        --enable-static \
+        --enable-shared=no \
+        --disable-stats \
+        --enable-prof
+    make install -j$(nproc)
+}
+
 ARIA2_BUILD() {
     ARIA2_RELEASE || ARIA2_SOURCE
     ARIA2_PATCH
@@ -93,6 +107,7 @@ ARIA2_BUILD() {
         --without-libgmp \
         --with-libssh2 \
         --with-sqlite3 \
+        --with-jemalloc \
         --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt' \
         ARIA2_STATIC=yes \
         --enable-shared=no
