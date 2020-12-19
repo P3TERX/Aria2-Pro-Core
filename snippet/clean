@@ -17,7 +17,7 @@ CLEANUP_SRC() {
         openssl \
         sqlite3 \
         libssh2 \
-        aria2
+        $ARIA2_CODE_DIR
 }
 
 CLEANUP_LIB() {

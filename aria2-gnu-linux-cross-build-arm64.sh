@@ -9,7 +9,7 @@
 # File name: aria2-gnu-linux-cross-build-arm64.sh
 # Description: Aria2 ard64 platform cross build
 # System Required: Debian & Ubuntu & Fedora & Arch Linux
-# Version: 1.5
+# Version: 1.6
 #
 
 set -e
@@ -22,6 +22,7 @@ ARCH="arm64"
 HOST="aarch64-linux-gnu"
 OPENSSL_ARCH="linux-aarch64"
 BUILD_DIR="/tmp"
+ARIA2_CODE_DIR="$BUILD_DIR/aria2"
 OUTPUT_DIR="$HOME/output"
 PREFIX="$BUILD_DIR/aria2-cross-build-libs-$ARCH"
 ARIA2_PREFIX="$HOME/aria2-local"

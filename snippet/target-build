@@ -85,8 +85,7 @@ JEMALLOC_BUILD() {
 }
 
 ARIA2_BUILD() {
-    ARIA2_RELEASE || ARIA2_SOURCE
-    ARIA2_PATCH
+    ARIA2_CODE_GET
     ./configure \
         --prefix=${ARIA2_PREFIX:-'/usr/loacl'} \
         --without-libxml2 \

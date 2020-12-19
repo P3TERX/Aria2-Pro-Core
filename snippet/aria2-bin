@@ -9,20 +9,20 @@
 #
 
 ARIA2_BIN() {
-    cd $BUILD_DIR/aria2/src
+    cd $ARIA2_CODE_DIR/src
     $STRIP aria2c
     mkdir -p $OUTPUT_DIR
     cp aria2c $OUTPUT_DIR
 }
 
 ARIA2_PACKAGE() {
-    cd $BUILD_DIR/aria2/src
+    cd $ARIA2_CODE_DIR/src
     $STRIP aria2c
     mkdir -p $OUTPUT_DIR
     tar zcvf $OUTPUT_DIR/aria2-static-linux-$ARCH.tar.gz aria2c
 }
 
 ARIA2_INSTALL() {
-    cd $BUILD_DIR/aria2
+    cd $ARIA2_CODE_DIR
     make install-strip
 }

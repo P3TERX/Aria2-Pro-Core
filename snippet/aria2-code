@@ -8,20 +8,22 @@
 # File name: snippet/aria2-code
 #
 
-ARIA2_SOURCE() {
-    if [ -e $BUILD_DIR/aria2 ]; then
-        cd $BUILD_DIR/aria2
+ARIA2_GIT_CODE() {
+    if [[ -d $ARIA2_CODE_DIR && -d $ARIA2_CODE_DIR/.git ]]; then
+        cd $ARIA2_CODE_DIR
+        git checkout master || git checkout HEAD
         git reset --hard origin || git reset --hard
         git pull
     else
-        git clone https://github.com/aria2/aria2 $BUILD_DIR/aria2
-        cd $BUILD_DIR/aria2
+        rm -rf $ARIA2_CODE_DIR
+        git clone https://github.com/aria2/aria2 $ARIA2_CODE_DIR
+        cd $ARIA2_CODE_DIR
     fi
-    autoreconf -i
+    autoreconf -fi || autoreconf -fiv
 }
 
-ARIA2_RELEASE() {
-    mkdir -p $BUILD_DIR/aria2 && cd $BUILD_DIR/aria2
+ARIA2_RELEASE_CODE() {
+    mkdir -p $ARIA2_CODE_DIR && cd $ARIA2_CODE_DIR
     curl -s 'https://api.github.com/repos/aria2/aria2/releases/latest' |
         grep 'browser_download_url.*[0-9]\.tar\.xz' | sed -e 's/^[[:space:]]*//' |
         cut -d ' ' -f 2 | xargs -I % curl -Ls -o - '%' | tar Jxvf - --strip-components=1
@@ -29,4 +31,10 @@ ARIA2_RELEASE() {
 
 ARIA2_PATCH() {
     git apply $SCRIPT_DIR/patch/*.patch
+}
+
+ARIA2_CODE_GET() {
+    #ARIA2_RELEASE_CODE
+    ARIA2_GIT_CODE
+    ARIA2_PATCH
 }

@@ -9,7 +9,7 @@
 # File name: aria2-gnu-linux-build.sh
 # Description: Aria2 ard64 platform build
 # System Required: Debian & Ubuntu & Fedora & Arch Linux
-# Version: 1.5
+# Version: 1.6
 #
 
 set -e
@@ -21,6 +21,7 @@ SCRIPT_DIR=$(dirname $(readlink -f $0))
 ARCH="amd64"
 OPENSSL_ARCH="linux-x86_64"
 BUILD_DIR="/tmp"
+ARIA2_CODE_DIR="$BUILD_DIR/aria2"
 OUTPUT_DIR="$HOME/output"
 PREFIX="$BUILD_DIR/aria2-build-libs"
 ARIA2_PREFIX="/usr/local"
