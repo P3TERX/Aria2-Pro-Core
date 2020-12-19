@@ -50,7 +50,7 @@ OPENSSL_BUILD() {
         $OPENSSL_ARCH \
         no-asm \
         shared
-    make install
+    make install_sw
 }
 
 SQLITE3_BUILD() {
