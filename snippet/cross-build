@@ -14,7 +14,8 @@ ZLIB_BUILD() {
     ./configure \
         --prefix=$PREFIX \
         --static
-    make install -j$(nproc)
+    make -j$(nproc)
+    make install
 }
 
 EXPAT_BUILD() {
@@ -24,9 +25,13 @@ EXPAT_BUILD() {
         --host=$HOST \
         --build=$(dpkg-architecture -qDEB_BUILD_GNU_TYPE) \
         --prefix=$PREFIX \
-        --enable-static=yes \
-        --enable-shared=no
-    make install -j$(nproc)
+        --enable-static \
+        --disable-shared \
+        --without-examples \
+        --without-tests \
+        --without-docbook
+    make -j$(nproc)
+    make install
 }
 
 C_ARES_BUILD() {
@@ -37,8 +42,10 @@ C_ARES_BUILD() {
         --build=$(dpkg-architecture -qDEB_BUILD_GNU_TYPE) \
         --prefix=$PREFIX \
         --enable-static \
-        --disable-shared
-    make install -j$(nproc)
+        --disable-shared \
+        --disable-tests
+    make -j$(nproc)
+    make install
 }
 
 OPENSSL_BUILD() {
@@ -46,10 +53,9 @@ OPENSSL_BUILD() {
     curl -Ls -o - "$OPENSSL" | tar zxvf - --strip-components=1
     ./Configure \
         --prefix=$PREFIX \
-        --openssldir=ssl \
         $OPENSSL_ARCH \
-        no-asm \
-        shared
+        no-tests
+    make -j$(nproc)
     make install_sw
 }
 
@@ -61,22 +67,23 @@ SQLITE3_BUILD() {
         --build=$(dpkg-architecture -qDEB_BUILD_GNU_TYPE) \
         --prefix=$PREFIX \
         --enable-static \
-        --enable-shared
-    make install -j$(nproc)
+        --disable-shared \
+        --disable-dynamic-extensions
+    make -j$(nproc)
+    make install
 }
 
 LIBSSH2_BUILD() {
     mkdir -p $BUILD_DIR/libssh2 && cd $BUILD_DIR/libssh2
     curl -Ls -o - "$LIBSSH2" | tar zxvf - --strip-components=1
-    rm -rf $PREFIX/lib/pkgconfig/libssh2.pc
     ./configure \
         --host=$HOST \
         --prefix=$PREFIX \
         --enable-static \
         --disable-shared \
-        CPPFLAGS="-I$PREFIX/include" \
-        LDFLAGS="-L$PREFIX/lib"
-    make install -j$(nproc)
+        --disable-examples-build
+    make -j$(nproc)
+    make install
 }
 
 JEMALLOC_BUILD() {
@@ -87,17 +94,22 @@ JEMALLOC_BUILD() {
         --build=$(dpkg-architecture -qDEB_BUILD_GNU_TYPE) \
         --prefix=$PREFIX \
         --enable-static \
-        --enable-shared=no \
+        --disable-shared \
         --disable-stats \
         --enable-prof
-    make install -j$(nproc)
+    make -j$(nproc)
+    make install
 }
 
 ARIA2_BUILD() {
     ARIA2_CODE_GET
     ./configure \
         --host=$HOST \
+        --build=$(dpkg-architecture -qDEB_BUILD_GNU_TYPE) \
         --prefix=${ARIA2_PREFIX:-'/usr/loacl'} \
+        --with-libz \
+        --with-libcares \
+        --with-libexpat \
         --without-libxml2 \
         --without-libgcrypt \
         --with-openssl \
@@ -109,6 +121,6 @@ ARIA2_BUILD() {
         --with-jemalloc \
         --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt' \
         ARIA2_STATIC=yes \
-        --enable-shared=no
+        --disable-shared
     make -j$(nproc)
 }
