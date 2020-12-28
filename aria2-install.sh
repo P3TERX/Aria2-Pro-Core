@@ -5,7 +5,7 @@
 # This is free software, licensed under the GNU General Public License v3.
 # See /LICENSE for more information.
 #
-# https://github.com/P3TERX/aria2-builder
+# https://github.com/P3TERX/Aria2-Pro-Core
 # File name: aria2-install.sh
 # Description: Install latest version Aria2
 # System Required: Debian/Ubuntu or other
@@ -45,7 +45,7 @@ else
 fi
 
 echo -e "${INFO} Get Aria2 download link ..."
-TAG_NAME=$(curl -fsSL https://api.github.com/repos/P3TERX/aria2-builder/releases/latest | grep -o '"tag_name": ".*"' | head -n 1 | cut -d'"' -f4)
+TAG_NAME=$(curl -fsSL https://api.github.com/repos/P3TERX/Aria2-Pro-Core/releases/latest | grep -o '"tag_name": ".*"' | head -n 1 | cut -d'"' -f4)
 [ -z $TAG_NAME ] && {
     echo -e "${ERROR} Unable to get Aria2 download link, network failure or API error."
     exit 1
@@ -54,7 +54,7 @@ ARIA2_VER=${TAG_NAME%_*}
 BUILD_DATE=${TAG_NAME#*_}
 
 echo -e "${INFO} Download Aria2 ${ARIA2_VER} (build ${BUILD_DATE} ${ARCH}) ..."
-curl -L "https://github.com/P3TERX/aria2-builder/releases/download/${TAG_NAME}/aria2-${ARIA2_VER}-static-linux-${ARCH}.tar.gz" | tar -xz
+curl -L "https://github.com/P3TERX/Aria2-Pro-Core/releases/download/${TAG_NAME}/aria2-${ARIA2_VER}-static-linux-${ARCH}.tar.gz" | tar -xz
 [ ! -s aria2c ] && {
     echo -e "${ERROR} Unable to download aria2, network failure or other error."
     exit 1

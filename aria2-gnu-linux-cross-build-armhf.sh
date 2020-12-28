@@ -5,7 +5,7 @@
 # This is free software, licensed under the GNU General Public License v3.
 # See /LICENSE for more information.
 #
-# https://github.com/P3TERX/aria2-builder
+# https://github.com/P3TERX/Aria2-Pro-Core
 # File name: aria2-gnu-linux-cross-build-armhf.sh
 # Description: Aria2 armhf platform cross build
 # System Required: Ubuntu 14.04/16.04
