@@ -15,7 +15,7 @@ Should close https://github.com/myfreeer/aria2-build-msys2/issues/10
                               using the Digest response header
 
                               Possible Values: true, false
-                              Default: true
+                              Default: false
                               Tags: #advanced, #http
 ---
  src/AbstractProxyRequestCommand.cc |  1 +
@@ -62,7 +62,7 @@ index a058eb9..9ff615a 100644
 +    OptionHandler* op(
 +        new BooleanOptionHandler(PREF_HTTP_WANT_DIGEST,
 +                                 TEXT_HTTP_WANT_DIGEST,
-+                                 A2_V_TRUE, OptionHandler::OPT_ARG));
++                                 A2_V_FALSE, OptionHandler::OPT_ARG));
 +    op->addTag(TAG_ADVANCED);
 +    op->addTag(TAG_HTTP);
 +    op->setInitialOption(true);
