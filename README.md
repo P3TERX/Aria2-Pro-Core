@@ -20,7 +20,7 @@ Aria2 static binaries for GNU/Linux with some powerful feature patches.
 * download: add option `retry-on-403` to retry on http 403 forbidden, which only effective if `retry-wait` > 0
 * download: add option `retry-on-406` to retry on http 406 not acceptable, which only effective if `retry-wait` > 0
 * download: add option `retry-on-unknown` to retry on unknown status code, which only effective if `retry-wait` > 0
-* Disable auto added Want-Digest header
+* http: add option `http-want-digest` to choose whether to send the generated `Want-Digest` HTTP header or not (Not send by default)
 
 ## Installing
 
