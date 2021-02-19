@@ -118,7 +118,7 @@ ARIA2_BUILD() {
         --without-libgmp \
         --with-libssh2 \
         --with-sqlite3 \
-        --with-jemalloc \
+        --without-jemalloc \
         --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt' \
         ARIA2_STATIC=yes \
         --disable-shared
