@@ -171,13 +171,13 @@ index 5768f7b..decb03e 100644
      OptionHandler* op(new BooleanOptionHandler(
          PREF_REUSE_URI, TEXT_REUSE_URI, A2_V_TRUE, OptionHandler::OPT_ARG));
 diff --git a/src/prefs.cc b/src/prefs.cc
-index 2591b9f..3368c06 100644
+index 2591b9f..eb191a2 100644
 --- a/src/prefs.cc
 +++ b/src/prefs.cc
-@@ -327,6 +327,14 @@ PrefPtr PREF_MAX_DOWNLOAD_RESULT = makePref("max-download-result");
+@@ -325,6 +325,14 @@ PrefPtr PREF_ENABLE_ASYNC_DNS6 = makePref("enable-async-dns6");
  // value: 1*digit
- PrefPtr PREF_RETRY_WAIT = makePref("retry-wait");
- // value: string
+ PrefPtr PREF_MAX_DOWNLOAD_RESULT = makePref("max-download-result");
+ // value: 1*digit
 +PrefPtr PREF_RETRY_ON_400 = makePref("retry-on-400");
 +// value: true | false
 +PrefPtr PREF_RETRY_ON_403 = makePref("retry-on-403");
@@ -186,17 +186,17 @@ index 2591b9f..3368c06 100644
 +// value: true | false
 +PrefPtr PREF_RETRY_ON_UNKNOWN = makePref("retry-on-unknown");
 +// value: true | false
+ PrefPtr PREF_RETRY_WAIT = makePref("retry-wait");
+ // value: string
  PrefPtr PREF_ASYNC_DNS_SERVER = makePref("async-dns-server");
- // value: true | false
- PrefPtr PREF_SHOW_CONSOLE_READOUT = makePref("show-console-readout");
 diff --git a/src/prefs.h b/src/prefs.h
-index 338fd6e..06ad8da 100644
+index 338fd6e..ffbc616 100644
 --- a/src/prefs.h
 +++ b/src/prefs.h
-@@ -280,6 +280,14 @@ extern PrefPtr PREF_MAX_DOWNLOAD_RESULT;
+@@ -278,6 +278,14 @@ extern PrefPtr PREF_ENABLE_ASYNC_DNS6;
  // value: 1*digit
- extern PrefPtr PREF_RETRY_WAIT;
- // value: string
+ extern PrefPtr PREF_MAX_DOWNLOAD_RESULT;
+ // value: 1*digit
 +extern PrefPtr PREF_RETRY_ON_400;
 +// value: true | false
 +extern PrefPtr PREF_RETRY_ON_403;
@@ -205,9 +205,10 @@ index 338fd6e..06ad8da 100644
 +// value: true | false
 +extern PrefPtr PREF_RETRY_ON_UNKNOWN;
 +// value: true | false
+ extern PrefPtr PREF_RETRY_WAIT;
+ // value: string
  extern PrefPtr PREF_ASYNC_DNS_SERVER;
- // value: true | false
- extern PrefPtr PREF_SHOW_CONSOLE_READOUT;
+
 diff --git a/src/usage_text.h b/src/usage_text.h
 index d73b50d..75d34a0 100644
 --- a/src/usage_text.h
