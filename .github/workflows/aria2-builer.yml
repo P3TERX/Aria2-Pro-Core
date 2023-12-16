@@ -80,15 +80,3 @@ jobs:
       run: |
         ./aria2c https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht.dat
         ./aria2c https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht6.dat
-        URL=$(curl -fsSL https://ubuntu.com/download/alternative-downloads)
-        TORRENT_URL=$(echo "$URL" | grep -o 'https.*server.*torrent' | head -1)
-        echo "Torrent URL: $TORRENT_URL"
-        ./aria2c "$TORRENT_URL"
-        ./aria2c \
-          --seed-time=0 \
-          --enable-dht6=true \
-          --dht-file-path="$PWD/dht.dat" \
-          --dht-file-path6="$PWD/dht6.dat" \
-          --dht-entry-point='dht.transmissionbt.com:6881' \
-          --dht-entry-point6='dht.transmissionbt.com:6881' \
-          "$TORRENT_URL"
