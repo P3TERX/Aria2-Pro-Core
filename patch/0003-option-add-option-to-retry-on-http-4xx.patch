@@ -171,7 +171,6 @@ index 5768f7b..decb03e 100644
      OptionHandler* op(new BooleanOptionHandler(
          PREF_REUSE_URI, TEXT_REUSE_URI, A2_V_TRUE, OptionHandler::OPT_ARG));
 diff --git a/src/prefs.cc b/src/prefs.cc
-index 937e927..33eff91 100644
 --- a/src/prefs.cc
 +++ b/src/prefs.cc
 @@ -327,6 +327,14 @@ PrefPtr PREF_MAX_DOWNLOAD_RESULT = makePref("max-download-result");
@@ -190,7 +189,6 @@ index 937e927..33eff91 100644
  // value: true | false
  PrefPtr PREF_SHOW_CONSOLE_READOUT = makePref("show-console-readout");
 diff --git a/src/prefs.h b/src/prefs.h
-index 338fd6e..06ad8da 100644
 --- a/src/prefs.h
 +++ b/src/prefs.h
 @@ -280,6 +280,14 @@ extern PrefPtr PREF_MAX_DOWNLOAD_RESULT;
