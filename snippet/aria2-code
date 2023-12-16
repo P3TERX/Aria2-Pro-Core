@@ -30,7 +30,7 @@ ARIA2_RELEASE_CODE() {
 }
 
 ARIA2_PATCH() {
-    git apply $SCRIPT_DIR/patch/*.patch -v
+    git apply $SCRIPT_DIR/patch/*.patch -v --ignore-space-change --ignore-whitespace
 }
 
 ARIA2_CODE_GET() {
