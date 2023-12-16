@@ -174,11 +174,10 @@ diff --git a/src/prefs.cc b/src/prefs.cc
 index 937e927..33eff91 100644
 --- a/src/prefs.cc
 +++ b/src/prefs.cc
-@@ -327,6 +327,14 @@ PrefPtr PREF_ENABLE_ASYNC_DNS6 = makePref("enable-async-dns6");
- PrefPtr PREF_MAX_DOWNLOAD_RESULT = makePref("max-download-result");
+@@ -327,6 +327,14 @@ PrefPtr PREF_MAX_DOWNLOAD_RESULT = makeP
  // value: 1*digit
  PrefPtr PREF_RETRY_WAIT = makePref("retry-wait");
-+// value: true | false
+ // value: string
 +PrefPtr PREF_RETRY_ON_400 = makePref("retry-on-400");
 +// value: true | false
 +PrefPtr PREF_RETRY_ON_403 = makePref("retry-on-403");
@@ -186,18 +185,18 @@ index 937e927..33eff91 100644
 +PrefPtr PREF_RETRY_ON_406 = makePref("retry-on-406");
 +// value: true | false
 +PrefPtr PREF_RETRY_ON_UNKNOWN = makePref("retry-on-unknown");
- // value: string
++// value: true | false
  PrefPtr PREF_ASYNC_DNS_SERVER = makePref("async-dns-server");
  // value: true | false
+ PrefPtr PREF_SHOW_CONSOLE_READOUT = makePref("show-console-readout");
 diff --git a/src/prefs.h b/src/prefs.h
 index e1f8397..019e774 100644
 --- a/src/prefs.h
 +++ b/src/prefs.h
-@@ -280,6 +280,14 @@ extern PrefPtr PREF_ENABLE_ASYNC_DNS6;
- extern PrefPtr PREF_MAX_DOWNLOAD_RESULT;
+@@ -280,6 +280,14 @@ extern PrefPtr PREF_MAX_DOWNLOAD_RESULT;
  // value: 1*digit
  extern PrefPtr PREF_RETRY_WAIT;
-+// value: true | false
+ // value: string
 +extern PrefPtr PREF_RETRY_ON_400;
 +// value: true | false
 +extern PrefPtr PREF_RETRY_ON_403;
@@ -205,9 +204,10 @@ index e1f8397..019e774 100644
 +extern PrefPtr PREF_RETRY_ON_406;
 +// value: true | false
 +extern PrefPtr PREF_RETRY_ON_UNKNOWN;
- // value: string
++// value: true | false
  extern PrefPtr PREF_ASYNC_DNS_SERVER;
  // value: true | false
+ extern PrefPtr PREF_SHOW_CONSOLE_READOUT;
 diff --git a/src/usage_text.h b/src/usage_text.h
 index d73b50d..75d34a0 100644
 --- a/src/usage_text.h
