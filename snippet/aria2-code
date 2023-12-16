@@ -30,7 +30,7 @@ ARIA2_RELEASE_CODE() {
 }
 
 ARIA2_PATCH() {
-    git apply $SCRIPT_DIR/patch/*.patch
+    git apply $SCRIPT_DIR/patch/*.patch -v
 }
 
 ARIA2_CODE_GET() {
